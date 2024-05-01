@@ -13,7 +13,7 @@
 			<div class="col-lg-9 blog-post-single">
 						<div class="row"> 
 			
-							<% for (let i = 0; i < course.length; i++){ %>
+							<% for (let i = 0; i < courses.length; i++){ %>
 
 			<div class="col-lg-6 col-md-6 col-12">
 
@@ -26,11 +26,11 @@
 					<div class="course-br">
 
 						<div class="course-title">
-							<h2><a href="course-single.html" title=""><%= course[i].title %></a></h2>
+							<h2><a href="/courses/<%= courses[i].slug %>" title=""><%= courses[i].name %></a></h2>
 						</div>
 
 						<div class="course-desc">
-							<p><%= course[i].description %> </p>
+							<p><%= courses[i].description %> </p>
 						</div>
 
 					</div>
