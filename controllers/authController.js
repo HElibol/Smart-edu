@@ -45,13 +45,21 @@ exports.loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
+
     if (!user) {
       res.status(400).send('kullanici yok');
     }
     const same = await bcrypt.compare(password, user.password);
+
     if (same) {
-      res.status(200).send('login');
+      req.session.userID = user._id
+      res.status(200).redirect('/')
     }
+
+    if(!same){
+      res.send('Sifre yanlis');
+    }
+
   } catch (err) {
     res.status(400).json({
       stauts: 'sifre yanlis',
