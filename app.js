@@ -48,9 +48,7 @@ app.use('/about', pageRoute );
 app.use('/courses', courseRoute);
 app.use('/categories', categoryRoute);
 app.use('/users', userRoute);
-app.get('/dashboard', (req, res) => {
-  res.render('dashboard');
-})
+
 
 const port = 3000;
 app.listen(port, () => {
