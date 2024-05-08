@@ -1,5 +1,7 @@
 <%- include('partials/_header') %>
 <%- include('partials/_navigation') %>
+
+<% if(user) { %>
 	
 	
 	<div class="all-title-box">
@@ -93,4 +95,5 @@
         </div><!-- end container -->
     </div><!-- end section -->
 
-	<%- include('partials/_footer') %>		
+	<% } %>
+	<%- include('partials/_footer') %>
