@@ -10,10 +10,7 @@ exports.createUser = async (req, res) => {
       user,
     });
   } catch (err) {
-    res.status(400).json({
-      stauts: 'fail',
-      err: err,
-    });
+    res.status(400).redirect("/login");
   }
 };
 

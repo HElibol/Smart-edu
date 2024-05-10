@@ -17,6 +17,11 @@ const UserScheam = new Scheam({
     type: String,
     required: true,
   },
+  role: {
+    type: String,
+    enum: ["student", "teacher", "admin"],
+    default: "student"
+  }
 });
 
 UserScheam.pre('save', function(next){
