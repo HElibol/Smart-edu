@@ -1,15 +1,14 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const Category = require('../models/Category');
+const Course = require('../models/Course');
+
 
 exports.createUser = async (req, res) => {
   const user = await User.create(req.body);
 
   try {
-    res.status(201).json({
-      stauts: 'basarili',
-      user,
-    });
+    res.status(400).redirect("/login");
   } catch (err) {
     res.status(400).redirect("/login");
   }
@@ -51,10 +50,13 @@ exports.logoutUser = (req, res) => {
 exports.getDashboardPage = async (req, res) => {
   const user = await User.findOne({_id : req.session.userID});
   const categories = await Category.find();
+  const courses = await Course.find({user: req.session.userID});
+
   res.status(200).render('dashboard', {
     page_name: 'dashboard',
     user: user,
-    categories: categories
+    categories: categories,
+    courses: courses
   });
 };
 

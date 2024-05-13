@@ -22,6 +22,7 @@ const UserScheam = new Scheam({
     enum: ["student", "teacher", "admin"],
     default: "student"
   }
+
 });
 
 UserScheam.pre('save', function(next){
