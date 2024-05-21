@@ -45,6 +45,7 @@ app.use("*",(req, res, next) => {
 //Routers
 app.use('/', pageRoute);
 app.use('/about', pageRoute );
+
 app.use('/courses', courseRoute);
 app.use('/categories', categoryRoute);
 app.use('/users', userRoute);

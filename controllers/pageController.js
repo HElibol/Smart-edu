@@ -23,3 +23,17 @@ exports.getLoginPage = (req, res) => {
   });
 };
 
+exports.getContactPage = (req, res) => {
+  res.status(200).render('contact', {
+    page_name: 'contact',
+  });
+};
+
+exports.sendEmail = (req, res) => {
+  console.log(req.body);
+
+  res.redirect('/');
+
+};
+
+
