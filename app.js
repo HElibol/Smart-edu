@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+const flash = require('connect-flash');
+
+
 const pageRoute = require('./routes/pageRoute');
 const courseRoute = require('./routes/courseRoute');
 const categoryRoute = require('./routes/categoryRoute');
@@ -15,6 +18,8 @@ mongoose.connect('mongodb://127.0.0.1/smartedu-db')
   .then(()=>{
     console.log('DB Connected Successfully');
   });
+
+
 
 //Template Engine
 app.set("view engine", "ejs");
@@ -41,6 +46,12 @@ app.use("*",(req, res, next) => {
   next();
 }) //send vs. ile diğer middlewarela sonlanıyor ama burada next te ihtiyacımız var
 
+app.use(flash());
+
+app.use((req,res, next) => {
+    res.locals.flashMessages = req.flash();
+    next();
+});
 
 //Routers
 app.use('/', pageRoute);

@@ -4,6 +4,7 @@ const Category = require('../models/Category');
 const User = require('../models/User');
 
 exports.createCourse = async (req, res) => {
+  try {
   const course = await Coures.create({
     name: req.body.name,
     description: req.body.description,
@@ -11,13 +12,13 @@ exports.createCourse = async (req, res) => {
     user: req.session.userID
   });
 
-  try {
-    res.status(201).redirect('/users/dashboard')
+
+    req.flash("success", `${course.name} başarılı bir şekilde kaydedildi`);
+    res.status(201).redirect('/users/dashboard');
+
   } catch (err) {
-    res.status(400).json({
-      stauts: 'fail',
-      err: err
-    });
+    req.flash("error", `Kurs eklenemedi`);
+    res.status(404).redirect('/users/dashboard');
   }
 };
 

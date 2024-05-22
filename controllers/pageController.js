@@ -29,10 +29,25 @@ exports.getContactPage = (req, res) => {
   });
 };
 
-exports.sendEmail = (req, res) => {
+exports.sendEmail = async (req, res) => {
+  try{
+
   console.log(req.body);
 
-  res.redirect('/');
+
+  req.flash("success", "Mesajınızı aldık.");
+
+
+  res.redirect('/contact');
+
+  }catch(err){
+
+    req.flash("error", `İletişime geçemedik! ${err}`);
+    res.redirect('/contact');
+
+  }
+
+
 
 };
 
