@@ -18,5 +18,7 @@ router.route('/logout').get(authController.logoutUser);
 //önce outhMiddleware kontrol ediyor her şey tamam ise next çalışır ve bir sonrakine geçer
 router.route('/dashboard').get(authMiddleware , authController.getDashboardPage); //http://localhost:3000/users/dashboard
 
+router.route('/:id').delete(authController.deleteUser);
+
 
 module.exports = router;
